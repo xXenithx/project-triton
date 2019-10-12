@@ -2,8 +2,8 @@
 //#include "heltec.h"/
 
 #ifndef STASSID
-#define STASSID "The Nest"
-#define STAPSK  "DrysbrBiiRlP@6v$"
+#define STASSID ""
+#define STAPSK  ""
 #endif
 
 
