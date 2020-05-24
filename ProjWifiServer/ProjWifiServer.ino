@@ -58,11 +58,11 @@ void setup() {
   
   pinMode(statusLED, OUTPUT);
   digitalWrite(statusLED, LOW);
-  Serial.begin(115200);
+  Serial.begin(74880);
   WiFi.mode(WIFI_STA);
   WiFi.begin(ssid, password);
   Serial.println("");
-
+  Serial.println("Connecting to wifi.");
   // Wait for connection
   while (WiFi.status() != WL_CONNECTED) {
     delay(500);

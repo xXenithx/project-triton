@@ -10,7 +10,7 @@
 const char* ssid     = STASSID;
 const char* password = STAPSK;
 
-const char* host = "192.168.1.116";
+const char* host = "192.168.1.32";
 const uint16_t port = 80;
 
 int btnState = 0;
@@ -25,10 +25,13 @@ void setup() {
 //  
 //  Heltec.display -> clear();
   
-  Serial.begin(115200);
+  Serial.begin(74880);
   Serial.println();
 
   pinMode(0, INPUT_PULLUP);
+  pinMode(5, OUTPUT);
+  digitalWrite(5, HIGH);
+
   initWifi();
 }
 
@@ -60,9 +63,18 @@ void sensorTrigger(){
 //  Heltec.display -> drawString(0,9,"Sending to Server.");
 //  Heltec.display -> display();
 //  
-  String message = "GET /trigger HTTP/1.0" ;
+  String payload = "GET /trigger HTTP/1.0" ;
 
-  connectServer(message);
+  connectServer(payload);
+
+
+  //Code to run after sending payload trigger relay
+  
+  //pin for relay
+  int relay = 5;
+  digitalWrite(relay, LOW);
+  delay(5000);
+
 }
 
 void connectServer(String msg){
@@ -89,10 +101,10 @@ void connectServer(String msg){
   // wait for data to be available
   unsigned long timeout = millis();
   while (client.available() == 0) {
-    if (millis() - timeout > 5000) {
+    if (millis() - timeout > 10000) {
       Serial.println(">>> Client Timeout !");
       client.stop();
-      delay(60000);
+      delay(10000);
       return;
     }
   }
@@ -117,10 +129,11 @@ void loop() {
 //  Heltec.display -> drawString(0,0,"Waiting for sensor trigger.");
 //  Heltec.display -> display();
 
-  btnState = digitalRead(0);
+  btnState = digitalRead(2);
   
   if( btnState == LOW){
     delay(100);
     sensorTrigger();
+    digitalWrite(5, HIGH);
   }
 }
