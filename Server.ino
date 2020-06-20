@@ -1,11 +1,15 @@
+// Last Update June 20, 2020 11:15am
+
 #include <ESP8266WiFi.h>
 #include <WiFiClient.h>
 #include <ESP8266WebServer.h>
 
 #define STASSID "ESPNET"
+#define STAPSWD "test1234"
 
 //Wifi Name variable
 const char* ssid = STASSID;
+const char* pswd = STAPSWD;
 
 //Creates an WebServer Instance to listen on port 80
 ESP8266WebServer server(80);
@@ -63,7 +67,7 @@ void setup() {
   Serial.println('Setting Up WiFi Network Configuration');
   Serial.println(WiFi.softAPConfig(local_IP, gateway, subnet) ? "Ready" : "Failed");
   Serial.println("Setting up WiFi Network");
-  Serial.println(WiFi.softAP(ssid) ? "Ready" : "Failed");
+  Serial.println(WiFi.softAP(ssid, pswd) ? "Ready" : "Failed");
   Serial.print("Wifi Network Address = ");
   Serial.println(WiFi.softAPIP());
 
