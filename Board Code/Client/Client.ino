@@ -2,8 +2,11 @@
 //#include "heltec.h"/
 
 #define STASSID "ESPNET"
+#define STAPSWD "test1234"
 
 const char* ssid = STASSID;
+const char* pswd = STAPSWD;
+
 
 const char* host = "192.168.4.22";
 const uint16_t port = 80;
@@ -33,7 +36,7 @@ void initWifi(){
   Serial.println(ssid);
 
   WiFi.mode(WIFI_STA);
-  WiFi.begin(ssid);
+  WiFi.begin(ssid,pswd);
 
   while (WiFi.status() != WL_CONNECTED) {
     delay(500);
