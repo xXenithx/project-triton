@@ -11,6 +11,9 @@
 const char* ssid = STASSID;
 const char* pswd = STAPSWD;
 
+//Pin Declaration
+const int RELAYPIN = 15;
+
 //Creates an WebServer Instance to listen on port 80
 ESP8266WebServer server(80);
 
@@ -31,9 +34,9 @@ void handleTrigger(){
 
   //Code to handle relay
   //Pin to write the data to relay
-  digitalWrite(15, LOW);
+  digitalWrite(RELAYPIN, LOW);
   delay(5000);
-  digitalWrite(15, HIGH);
+  digitalWrite(RELAYPIN, HIGH);
 }
 
 
@@ -59,9 +62,9 @@ void setup() {
   // put your setup code here, to run once:
   
   //Setup Serial Monitor and Pins
-  Serial.begin(74880);
-  pinMode(15, OUTPUT);
-  digitalWrite(15, HIGH);
+  Serial.begin(921600);
+  pinMode(RELAYPIN, OUTPUT);
+  digitalWrite(RELAYPIN, HIGH);
 
   //Setup Wifi Broadcast Connection
   Serial.println('Setting Up WiFi Network Configuration');

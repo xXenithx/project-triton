@@ -1,5 +1,4 @@
 #include <ESP8266WiFi.h>
-//#include "heltec.h"/
 
 #define STASSID "ESPNET"
 #define STAPSWD "test1234"
@@ -11,22 +10,14 @@ const char* pswd = STAPSWD;
 const char* host = "192.168.4.22";
 const uint16_t port = 80;
 
-int btnState = 0;
+int btnPIN = 0  ;
 
 
 void setup() {
-  // put your setup code here, to run once:
-//  Heltec.begin(true, true);
-//  Heltec.display -> init();
-//  Heltec.display->flipScreenVertically();
-//  Heltec.display->setFont(ArialMT_Plain_10);
-//  
-//  Heltec.display -> clear();
-  
-  Serial.begin(74880);
+  Serial.begin(921600);
   Serial.println();
 
-  pinMode(0, INPUT_PULLUP);
+  pinMode(btnPIN, INPUT_PULLUP);
 
   initWifi();
 }
@@ -47,18 +38,9 @@ void initWifi(){
   Serial.println("WiFi connected");
   Serial.println("IP address: ");
   Serial.println(WiFi.localIP());
-
-//  Heltec.display -> drawString(0,0, "Connected to ");
-//  Heltec.display -> drawString(1,0, ssid);
-//  Heltec.display -> display();
 }
 
 void sensorTrigger(){
-//  Heltec.display -> clear();
-//  Heltec.display -> drawString(0,0,"Sensor Triggered!");
-//  Heltec.display -> drawString(0,9,"Sending to Server.");
-//  Heltec.display -> display();
-//  
   String payload = "GET /trigger HTTP/1.0" ;
 
   connectServer(payload);
@@ -112,11 +94,8 @@ void connectServer(String msg){
 
 void loop() {
   // put your main code here, to run repeatedly:
-//  Heltec.display -> clear();
-//  Heltec.display -> drawString(0,0,"Waiting for sensor trigger.");
-//  Heltec.display -> display();
 
-  btnState = digitalRead(2);
+  int btnState = digitalRead(btnPIN);
   
   if( btnState == LOW){
     delay(100);
