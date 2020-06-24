@@ -10,7 +10,7 @@ const char* pswd = STAPSWD;
 const char* host = "192.168.4.22";
 const uint16_t port = 80;
 
-int btnPIN = 0  ;
+int btnPIN = 2  ;
 
 
 void setup() {
