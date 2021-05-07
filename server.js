@@ -24,7 +24,7 @@ mongoose.connect(dbConfig.URL,{
     process.exit();
 });
 
-require('./api/routers/usersRoute')(app);
+require('./api/routers/usersRoute')(app)
 app.listen(process.env.PORT, () => {
     console.log(`Server listening on port ${process.env.PORT}`);
 })
