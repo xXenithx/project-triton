@@ -11,6 +11,11 @@ jobs:
       - run:
           command: npm start
       - run:
+          shell: /bin/sh
+          command: |
+                wget --retry-connrefused --waitretry=1 --read-timeout=20 --timeout=15 -t 10 http://localhost:5050/api/users
+                :
+      - run:
           command: npm run test
 workflows:
   build-and-test:
