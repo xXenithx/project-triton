@@ -27,6 +27,13 @@ describe('Users', () => {
         });
     });
 
+    it('GET /api/users:Id', () => {
+        return request.get(`/api/users/${userId}`)
+        .then((res) => {
+            expect(res.body.id).to.equal(userId);
+        });
+    });
+
     it('PUT /api/users/:Id', () => {
         const data = {
             name: "Mr. Dummy"
@@ -35,6 +42,13 @@ describe('Users', () => {
         .send(data)
         .then((res) => {
             expect(res.body.message).to.equal("User was updated successfully.");
+        });
+    });
+
+    it('DELETE /api/users/:id', () => {
+        return request.delete(`/api/users/${userId}`)
+        .then((res) => {
+            expect(res.body.message).to.equal(`User ${userId} was successfully deleted.`)
         });
     });
 });
