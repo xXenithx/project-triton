@@ -5,6 +5,7 @@ const expect = chai.expect;
 
 describe('Users', () => {
     let userId;
+    let name;
     it('GET /api/users', () => {
         return request.get('/api/users/').then((res) => {
             expect(res.body).to.not.be.empty;
@@ -24,6 +25,7 @@ describe('Users', () => {
         .then((res) => {
             expect(res.body).to.deep.include(data);
             userId = res.body.id;
+            name = res.body.name;
         });
     });
 
@@ -31,6 +33,14 @@ describe('Users', () => {
         return request.get(`/api/users/${userId}`)
         .then((res) => {
             expect(res.body.id).to.equal(userId);
+        });
+    });
+
+    it('Get /api/users?name=<name>', () => {
+        return request.get(`/api/users?name=${name}`)
+        .then((res) => {
+            // console.log(res.body[0].name);
+            expect(res.body[0].name).to.equal(name);
         });
     });
 
