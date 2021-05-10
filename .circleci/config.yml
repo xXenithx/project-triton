@@ -9,6 +9,10 @@ jobs:
       - checkout
       - node/install-packages
       - run:
+          command: echo 'export MONGODB_URI="FOO"' >> $MONGODB_URI
+      - run:
+          command: echo 'export PORT="FOO"' >> $PORT
+      - run:
           command: npm start
       - run:
           command: npm run test
