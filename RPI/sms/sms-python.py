@@ -5,8 +5,9 @@ from dotenv import load_dotenv, find_dotenv
 load_dotenv(find_dotenv())
 
 TEXTBELT_API_KEY = ""
-isTest = False
+isTest = True
 msg = "test"
+number = os.environ.get("PHONE_NUMBER")
 
 if isTest:
     TEXTBELT_API_KEY = os.environ.get("TB_API_KEY") + "_test"
@@ -17,7 +18,7 @@ else:
 print(TEXTBELT_API_KEY)
 
 res = requests.post('https://textbelt.com/text', {
-  'phone': '',
+  'phone': number,
   'message': msg,
   'key': TEXTBELT_API_KEY,
 })
