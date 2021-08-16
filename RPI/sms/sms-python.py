@@ -6,7 +6,7 @@ load_dotenv(find_dotenv())
 
 TEXTBELT_API_KEY = ""
 isTest = True
-msg = "test"
+msg = "Yo Alex! "
 number = os.environ.get("PHONE_NUMBER")
 
 if isTest:
